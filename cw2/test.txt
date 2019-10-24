@@ -1,0 +1,1 @@
+Short text document to test file opening in python.
