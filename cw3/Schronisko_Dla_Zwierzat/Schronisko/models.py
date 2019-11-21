@@ -10,11 +10,13 @@ class Typ_Umowy(models.Model):
     stanowisko = models.CharField(max_length=13, choices=STANOWISKO_CHOICES)
     pensja = models.IntegerField()
 
+
 class Umowa(models.Model):
     data_zatrudnienia = models.DateField()
     data_konca_umowy = models.DateField()
     nr_konta = models.CharField(max_length=26, null=False)
     typ_umowy = models.ForeignKey(Typ_Umowy, on_delete=models.SET_NULL, null=True)
+
 
 class Pracownik(models.Model):
     imie = models.CharField(max_length=45, null=False)
@@ -22,6 +24,7 @@ class Pracownik(models.Model):
     pesel = models.CharField(max_length=11, null=False, unique=True)
     telefon = models.CharField(max_length=9)
     umowa = models.ForeignKey(Umowa, on_delete=models.CASCADE)
+
 
 class Boks(models.Model):
     STREFA_CHOICES = (
@@ -31,6 +34,7 @@ class Boks(models.Model):
     )
     strefa = models.CharField(max_length=15, choices=STREFA_CHOICES)
     pracownik = models.ForeignKey(Pracownik, on_delete=models.SET_NULL, null=True)
+
 
 class Zwierze(models.Model):
     GATUNEK_CHOICES = (
