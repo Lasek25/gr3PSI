@@ -1,6 +1,5 @@
 from django.db import models
 
-
 class Typ_Umowy(models.Model):
     STANOWISKO_CHOICES = (
         ('OPIEKUN', 'opiekun'),
