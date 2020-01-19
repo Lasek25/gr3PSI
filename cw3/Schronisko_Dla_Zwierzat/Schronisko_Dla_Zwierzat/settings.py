@@ -77,7 +77,8 @@ WSGI_APPLICATION = 'Schronisko_Dla_Zwierzat.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'mysql.connector.django',
+        # 'ENGINE': 'mysql.connector.django',
+        'ENGINE': 'django.db.backends.mysql',
         'HOST': '213.184.8.199',
         'PORT': '3306',
         #'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),

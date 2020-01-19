@@ -21,7 +21,7 @@ class PracownikLista(APIView):
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
 
     def get(self, request, format=None):
-        pracownicy = User.objects.all()
+        pracownicy = Pracownik.objects.all()
         serializer = PracownikSerializer(pracownicy, many=True)
         return Response(serializer.data)
 
