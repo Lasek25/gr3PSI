@@ -61,6 +61,21 @@ class PracownikSzczegoly(APIView):
         return Response(status=status.HTTP_204_NO_CONTENT)
 
 
+class TypUmowyLista(APIView):
+    permission_classes = [permissions.IsAdminUser]
+
+    def get(self, request, format=None):
+        typ_umowy = Typ_Umowy.objects.all()
+        serializer = TypUmowySerializer(typ_umowy, many=True)
+        return Response(serializer.data)
+
+    def post(self, request, format=None):
+        serializer = TypUmowySerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save(owner=self.request.user)
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
 class UserList(generics.ListAPIView):
     queryset = User.objects.all()
     serializer_class = PracownikSerializer
